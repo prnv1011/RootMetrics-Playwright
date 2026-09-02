@@ -154,3 +154,9 @@ class OverallSummaryPage():
             row = rows.nth(i)
             expect(row.locator("td.previous-winners")).not_to_contain_text("Not available")
             expect(row.locator("td.current-winners")).not_to_contain_text("Not available")
+
+    def verify_completed_markets_winner_columns(self):
+        from playwright.sync_api import expect
+        expect(self.previous).to_be_visible()
+        expect(self.current).to_be_visible()
+        logger.info("Verified previous and current winners columns are visible for completed markets")
