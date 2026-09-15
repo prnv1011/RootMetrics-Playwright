@@ -54,3 +54,22 @@ class HelpPage:
         button.click()
         expect(title).to_be_visible()
         logger.info(f"Clicked {button.inner_text()}, {title.inner_text()} is visible")
+
+    def verify_all_help_links(self):
+        help_links = [
+            (self.award_view_summary_btn, self.summary_title),
+            (self.access_export_btn, self.access_export_title),
+            (self.operator_btn, self.operator_title),
+            (self.market_btn, self.market_title),
+            (self.defining_points_btn, self.defining_points_title),
+            (self.rootscore_and_ranks_btn, self.rootscore_and_ranks_title),
+            (self.point_analysis_btn, self.point_analysis_title),
+            (self.metrics_btn, self.metrics_title),
+            (self.measuring_btn, self.measuring_title),
+            (self.charts_btn, self.charts_title),
+            (self.figures_btn, self.figures_title),
+            (self.comparability_btn, self.comparability_title),
+            (self.terms_btn, self.terms_title),
+        ]
+        for button, title in help_links:
+            self.verify_help_page(button, title)
