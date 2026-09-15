@@ -154,3 +154,17 @@ class OverallSummaryPage():
             row = rows.nth(i)
             expect(row.locator("td.previous-winners")).not_to_contain_text("Not available")
             expect(row.locator("td.current-winners")).not_to_contain_text("Not available")
+
+    def click_and_verify_completed_market_checkbox(self):
+        self.completed_markets_checkbox.click()
+        logger.info("Clicked on Completed Markets checkbox")
+
+    def verify_completed_markets(self):
+        expect(self.previous).to_be_visible()
+        expect(self.current).to_be_visible()
+        logger.info("Previous and Current winners columns are visible for completed markets")
+
+    def verify_completed_markets_winner_columns_no_not_available(self):
+        expect(self.previous).not_to_contain_text("Not Available")
+        expect(self.current).not_to_contain_text("Not Available")
+        logger.info("Verified that Previous and Current winners columns do not contain 'Not Available'")
