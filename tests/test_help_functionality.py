@@ -25,3 +25,16 @@ def test_help_functionality(page, valid_login):
     ]
     for button, title in help_links:
         help_page.verify_help_page(button, title)
+
+
+from pages.help_page import HelpPage
+from pages.overall_summary_page import OverallSummaryPage
+
+
+def test_help_functionality(page, valid_login):
+    overall_summary_page = OverallSummaryPage(page)
+    help_page = HelpPage(page)
+    overall_summary_page.handle_welcome_popup()
+    overall_summary_page.click_user_menu()
+    help_page.click_help()
+    help_page.verify_all_help_links()
