@@ -154,3 +154,63 @@ class OverallSummaryPage():
             row = rows.nth(i)
             expect(row.locator("td.previous-winners")).not_to_contain_text("Not available")
             expect(row.locator("td.current-winners")).not_to_contain_text("Not available")
+
+    def click_and_verify_speed(self):
+        self.speed_btn.click()
+        expect(self.quality_param_title).to_contain_text("Speed")
+        logger.info("Clicked on Speed, Title verified successfully")
+
+    def click_and_verify_data(self):
+        self.data_btn.click()
+        expect(self.quality_param_title).to_contain_text("Data")
+        logger.info("Clicked on Data, Title verified successfully")
+
+    def click_and_verify_call(self):
+        self.call_btn.click()
+        expect(self.quality_param_title).to_contain_text("Call")
+        logger.info("Clicked on Call, Title verified successfully")
+
+    def click_and_verify_text(self):
+        self.text_btn.click()
+        expect(self.quality_param_title).to_contain_text("Text")
+        logger.info("Clicked on Text, Title verified successfully")
+
+    def click_and_verify_video(self):
+        self.video_btn.click()
+        expect(self.quality_param_title).to_contain_text("Video")
+        logger.info("Clicked on Video, Title verified successfully")
+
+    def verify_att_carrier_presence(self):
+        expect(self.carrier_att).to_be_visible()
+        expect(self.att_bar).to_be_visible()
+        logger.info("AT&T carrier button and bar are visible")
+
+    def verify_tmobile_carrier_presence(self):
+        expect(self.carrier_tmobile).to_be_visible()
+        expect(self.tmobile_bar).to_be_visible()
+        logger.info("T-Mobile carrier button and bar are visible")
+
+    def verify_verizon_carrier_presence(self):
+        expect(self.carrier_verizon).to_be_visible()
+        expect(self.verizon_bar).to_be_visible()
+        logger.info("Verizon carrier button and bar are visible")
+
+    def click_download_dropdown(self):
+        self.download_dropdown.click()
+        logger.info("Download dropdown clicked")
+
+    def click_export_view(self):
+        self.export_view_rb.check()
+        logger.info("Export current view radio button selected")
+
+    def download_file(self):
+        with self.page.expect_download() as download_info:
+            self.download_btn.click()
+        download = download_info.value
+        logger.info("Download triggered and captured")
+        return download
+
+    def run_genai_validation(self, instruction):
+        from tests.utils.genai_validation import _run_genai_validation
+        _run_genai_validation(self.page, instruction)
+        logger.info(f"GenAI validation executed with instruction: {instruction}")
