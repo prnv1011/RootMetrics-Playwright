@@ -214,3 +214,11 @@ class OverallSummaryPage():
         from tests.utils.genai_validation import _run_genai_validation
         _run_genai_validation(self.page, instruction)
         logger.info(f"GenAI validation executed with instruction: {instruction}")
+
+    def select_market(self, market_name: str):
+            self.page.get_by_placeholder('Find a Market').first.click(force=True)
+            self.page.get_by_text(market_name, exact=False).first.click(force=True)
+
+    def open_point_analysis_and_show_more(self):
+            self.page.locator('span:has-text("Point analysis")').click(force=True)
+            self.page.locator('button:has-text("Show More")').click(force=True)
